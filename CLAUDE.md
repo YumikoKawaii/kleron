@@ -56,6 +56,22 @@ pnpm dev              # starts on :5173, proxies /rpc → :8080
 # DATABASE_URL=postgres://postgres:postgres@localhost:5432/kleron
 ```
 
+## Commit messages
+
+Skip the technical description. Write something that sounds magical — evocative, a little poetic, like a tarot card title or an incantation. One line is enough.
+
+```
+# good
+The cards are dealt
+Shadows take their place
+The wheel begins to turn
+A new path opens
+
+# bad
+Add Redis cache and refactor store layer
+Fix DrawCards user ID parameter
+```
+
 ## Go OOP practices
 
 Go is not Java. Follow these rules — strict enough to keep the code clean, loose enough not to fight the language.
