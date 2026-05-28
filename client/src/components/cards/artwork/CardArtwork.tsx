@@ -17,8 +17,7 @@ import { SuitCup }      from './suits/SuitCup'
 import { SuitSword }    from './suits/SuitSword'
 import { SuitPentacle } from './suits/SuitPentacle'
 
-const INK = '#2c1d0e'
-const PARCHMENT = '#fdf8f0'
+const INK = '#2a1e38'
 
 type MotifComponent = React.ComponentType<{ stroke?: string; opacity?: number }>
 
@@ -35,90 +34,27 @@ interface Props {
   isReversed?: boolean
 }
 
+// Renders the motif composition as a <g> for embedding inside a parent SVG.
+// The coordinate space is 0–100 × 0–111 (motifs are authored to this zone).
+// Caller is responsible for applying any filter (e.g. aged paper displacement).
 export function CardArtwork({ card, isReversed }: Props) {
   const composition = cardCompositions[card.id]
-
   return (
-    <svg
-      viewBox="0 0 100 160"
-      xmlns="http://www.w3.org/2000/svg"
-      width="100%"
-      height="100%"
-    >
-      <defs>
-        {/* subtle aged-paper displacement — gives lines a hand-drawn quality */}
-        <filter id="aged" x="-5%" y="-5%" width="110%" height="110%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.065" numOctaves="3" seed="7" result="noise" />
-          <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.35"
-            xChannelSelector="R" yChannelSelector="G" />
-        </filter>
-      </defs>
-
-      {/* background */}
-      <rect width={100} height={160} fill={PARCHMENT} />
-
-      {/* outer border */}
-      <rect x={2} y={2} width={96} height={156} fill="none" stroke={INK} strokeWidth={0.8} />
-      {/* inner border */}
-      <rect x={4.5} y={4.5} width={91} height={121} fill="none" stroke={INK} strokeWidth={0.35} />
-
-      {/* corner ornaments — small 4-pt crosses */}
-      {([
-        [4.5, 4.5], [95.5, 4.5], [4.5, 125.5], [95.5, 125.5],
-      ] as [number, number][]).map(([cx, cy], i) => (
-        <g key={i}>
-          <line x1={cx - 2} y1={cy} x2={cx + 2} y2={cy} stroke={INK} strokeWidth={0.45} />
-          <line x1={cx} y1={cy - 2} x2={cx} y2={cy + 2} stroke={INK} strokeWidth={0.45} />
-        </g>
-      ))}
-
-      {/* motifs */}
-      <g filter="url(#aged)">
-        {composition?.motifs.map((p, i) => {
-          const M = MOTIF_MAP[p.motif]
-          if (!M) return null
-          const transform = [
-            `translate(${p.x} ${p.y})`,
-            p.rotation ? `rotate(${p.rotation})` : '',
-            `scale(${p.scale ?? 1})`,
-          ].filter(Boolean).join(' ')
-          return (
-            <g key={i} transform={transform}>
-              <M stroke={INK} opacity={isReversed ? (p.opacity ?? 1) * 0.55 : (p.opacity ?? 1)} />
-            </g>
-          )
-        })}
-      </g>
-
-      {/* name area — ruled separator */}
-      <line x1={4.5} y1={128} x2={95.5} y2={128} stroke={INK} strokeWidth={0.4} />
-
-      {/* card name */}
-      <text
-        x={50} y={142}
-        textAnchor="middle"
-        fontFamily="Cinzel, serif"
-        fontSize={5.5}
-        fill={INK}
-        letterSpacing={1.2}
-      >
-        {card.name.toUpperCase()}
-      </text>
-
-      {/* reversed indicator */}
-      {isReversed && (
-        <text
-          x={50} y={153}
-          textAnchor="middle"
-          fontFamily="IM Fell English, serif"
-          fontSize={4}
-          fill={INK}
-          opacity={0.55}
-          fontStyle="italic"
-        >
-          reversed
-        </text>
-      )}
-    </svg>
+    <g>
+      {composition?.motifs.map((p, i) => {
+        const M = MOTIF_MAP[p.motif]
+        if (!M) return null
+        const transform = [
+          `translate(${p.x} ${p.y})`,
+          p.rotation ? `rotate(${p.rotation})` : '',
+          `scale(${p.scale ?? 1})`,
+        ].filter(Boolean).join(' ')
+        return (
+          <g key={i} transform={transform}>
+            <M stroke={INK} opacity={isReversed ? (p.opacity ?? 1) * 0.55 : (p.opacity ?? 1)} />
+          </g>
+        )
+      })}
+    </g>
   )
 }
