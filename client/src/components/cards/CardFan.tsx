@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { TarotCard } from './TarotCard'
-import type { Card } from '../../gen/kleron/v1/tarot_pb'
+import type { Card } from '../../pb/kleron/v1/tarot_pb'
 
 interface CardFanProps {
   cards: Card[]

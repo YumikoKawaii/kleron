@@ -6,7 +6,7 @@ import (
 
 	"google.golang.org/protobuf/types/known/timestamppb"
 
-	kleronv1 "kleron/server/gen/kleron/v1"
+	kleronv1 "kleron/server/pb/kleron/v1"
 )
 
 func (s *Store) GetReadingHistory(ctx context.Context, userID string, page, pageSize int) ([]*kleronv1.Reading, int, error) {

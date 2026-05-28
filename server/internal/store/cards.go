@@ -4,7 +4,7 @@ import (
 	"context"
 	"math/rand"
 
-	kleronv1 "kleron/server/gen/kleron/v1"
+	kleronv1 "kleron/server/pb/kleron/v1"
 )
 
 // warmCards loads all cards from DB and pushes them into the cache.

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { authClient } from '../lib/rpc'
-import type { User } from '../gen/kleron/v1/auth_pb'
+import type { User } from '../pb/kleron/v1/auth_pb'
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null)

@@ -5,7 +5,7 @@ import (
 
 	"connectrpc.com/connect"
 
-	kleronv1 "kleron/server/gen/kleron/v1"
+	kleronv1 "kleron/server/pb/kleron/v1"
 )
 
 // TarotStore is the exact surface the TarotHandler needs from the store layer.

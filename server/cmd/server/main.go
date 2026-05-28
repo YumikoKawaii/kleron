@@ -12,7 +12,7 @@ import (
 	"golang.org/x/net/http2"
 	"golang.org/x/net/http2/h2c"
 
-	kleronv1connect "kleron/server/gen/kleron/v1/kleronv1connect"
+	kleronv1connect "kleron/server/pb/kleron/v1/kleronv1connect"
 	"kleron/server/internal/handler"
 	"kleron/server/internal/store"
 )

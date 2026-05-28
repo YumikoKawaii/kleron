@@ -7,7 +7,7 @@ import (
 	"github.com/redis/go-redis/v9"
 	"google.golang.org/protobuf/encoding/protojson"
 
-	kleronv1 "kleron/server/gen/kleron/v1"
+	kleronv1 "kleron/server/pb/kleron/v1"
 )
 
 const (

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { tarotClient } from '../lib/rpc'
-import type { Reading as TReading } from '../gen/kleron/v1/tarot_pb'
+import type { Reading as TReading } from '../pb/kleron/v1/tarot_pb'
 
 export function Reading() {
   const { id } = useParams<{ id: string }>()

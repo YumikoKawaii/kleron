@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { tarotClient } from '../lib/rpc'
 import { CardFan } from '../components/cards/CardFan'
-import type { Card } from '../gen/kleron/v1/tarot_pb'
+import type { Card } from '../pb/kleron/v1/tarot_pb'
 
 export function Home() {
   const navigate = useNavigate()

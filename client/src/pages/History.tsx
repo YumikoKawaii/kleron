@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { tarotClient } from '../lib/rpc'
-import type { Reading } from '../gen/kleron/v1/tarot_pb'
+import type { Reading } from '../pb/kleron/v1/tarot_pb'
 
 export function History() {
   const navigate = useNavigate()

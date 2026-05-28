@@ -3,7 +3,7 @@ package store
 import (
 	"context"
 
-	kleronv1 "kleron/server/gen/kleron/v1"
+	kleronv1 "kleron/server/pb/kleron/v1"
 )
 
 const devUserID = "00000000-0000-0000-0000-000000000001"

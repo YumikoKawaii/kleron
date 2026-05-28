@@ -8,7 +8,7 @@ A tarot reading web app with animated card drawing, per-card explanations, readi
 ### Transport
 - **ConnectRPC** (HTTP/2) end-to-end: proto definitions → `buf generate` → Go server stubs + TypeScript client
 - No plain HTTP endpoints. Auth callback is handled client-side (PKCE OAuth flow)
-- Proto source lives in `proto/kleron/v1/`, buf configs in `proto/`, generated code in `server/gen/` and `client/src/gen/`
+- Proto source lives in `proto/kleron/v1/`, buf configs in `proto/`, generated code in `server/pb/` and `client/src/pb/`
 
 ### Backend (`server/`)
 - **Go** with `connectrpc.com/connect`
@@ -33,7 +33,7 @@ Nostalgic, magic, a bit light. Think warm parchment, soft golds, faded ink — l
 
 ### Codegen (run from proto/)
 ```sh
-cd proto && buf generate    # regenerates server/gen/ and client/src/gen/
+cd proto && buf generate    # regenerates server/pb/ and client/src/pb/
 ```
 
 ### Backend

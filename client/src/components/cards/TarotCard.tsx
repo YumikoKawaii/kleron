@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import type { Card } from '../../gen/kleron/v1/tarot_pb'
+import type { Card } from '../../pb/kleron/v1/tarot_pb'
 
 interface TarotCardProps {
   card: Card

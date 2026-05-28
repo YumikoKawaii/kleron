@@ -3,14 +3,14 @@ inputs:
   - directory: .
 plugins:
   - local: protoc-gen-go
-    out: ../server/gen
+    out: ../server/pb
     opt:
       - paths=source_relative
   - local: protoc-gen-connect-go
-    out: ../server/gen
+    out: ../server/pb
     opt:
       - paths=source_relative
   - local: protoc-gen-es
-    out: ../client/src/gen
+    out: ../client/src/pb
   - local: protoc-gen-connect-es
-    out: ../client/src/gen
+    out: ../client/src/pb
