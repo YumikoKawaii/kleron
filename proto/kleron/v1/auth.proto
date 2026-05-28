@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package kleron.v1;
+
+option go_package = "kleron/server/gen/kleron/v1;kleronv1";
+
+message User {
+  string id = 1;
+  string email = 2;
+  string name = 3;
+  string avatar_url = 4;
+}
+
+message GetAuthURLRequest {
+  string provider = 1;
+  string code_challenge = 2;
+  string state = 3;
+}
+
+message GetAuthURLResponse {
+  string url = 1;
+}
+
+message ExchangeCodeRequest {
+  string code = 1;
+  string state = 2;
+  string code_verifier = 3;
+}
+
+message ExchangeCodeResponse {
+  string access_token = 1;
+  int64 expires_in = 2;
+  User user = 3;
+}
+
+message GetMeRequest {}
+
+message GetMeResponse {
+  User user = 1;
+}
+
+message LogoutRequest {}
+message LogoutResponse {}
+
+service AuthService {
+  rpc GetAuthURL(GetAuthURLRequest) returns (GetAuthURLResponse);
+  rpc ExchangeCode(ExchangeCodeRequest) returns (ExchangeCodeResponse);
+  rpc GetMe(GetMeRequest) returns (GetMeResponse);
+  rpc Logout(LogoutRequest) returns (LogoutResponse);
+}

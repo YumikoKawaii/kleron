@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package kleron.v1;
+
+option go_package = "kleron/server/gen/kleron/v1;kleronv1";
+
+import "google/protobuf/timestamp.proto";
+
+enum Suit {
+  SUIT_UNSPECIFIED = 0;
+  SUIT_MAJOR_ARCANA = 1;
+  SUIT_WANDS = 2;
+  SUIT_CUPS = 3;
+  SUIT_SWORDS = 4;
+  SUIT_PENTACLES = 5;
+}
+
+message Card {
+  string id = 1;
+  string name = 2;
+  int32 number = 3;
+  Suit suit = 4;
+  string image_url = 5;
+  string upright_meaning = 6;
+  string reversed_meaning = 7;
+  repeated string keywords = 8;
+  bool is_reversed = 9;
+  string description = 10;
+}
+
+message Reading {
+  string id = 1;
+  string user_id = 2;
+  repeated Card cards = 3;
+  string spread_type = 4;
+  string question = 5;
+  google.protobuf.Timestamp created_at = 6;
+}
+
+message DrawCardsRequest {
+  int32 count = 1;
+  string question = 2;
+  string spread_type = 3;
+}
+
+message DrawCardsResponse {
+  repeated Card cards = 1;
+  string reading_id = 2;
+}
+
+message GetCardRequest {
+  string card_id = 1;
+}
+
+message GetCardResponse {
+  Card card = 1;
+}
+
+message GetReadingHistoryRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message GetReadingHistoryResponse {
+  repeated Reading readings = 1;
+  int32 total = 2;
+}
+
+message SaveReadingRequest {
+  repeated string card_ids = 1;
+  repeated bool reversals = 2;
+  string question = 3;
+  string spread_type = 4;
+}
+
+message SaveReadingResponse {
+  Reading reading = 1;
+}
+
+service TarotService {
+  rpc DrawCards(DrawCardsRequest) returns (DrawCardsResponse);
+  rpc GetCard(GetCardRequest) returns (GetCardResponse);
+  rpc GetReadingHistory(GetReadingHistoryRequest) returns (GetReadingHistoryResponse);
+  rpc SaveReading(SaveReadingRequest) returns (SaveReadingResponse);
+}

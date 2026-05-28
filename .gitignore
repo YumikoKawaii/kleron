@@ -1,0 +1,6 @@
+.env
+server/gen/
+client/src/gen/
+client/node_modules/
+client/dist/
+server/kleron-server
