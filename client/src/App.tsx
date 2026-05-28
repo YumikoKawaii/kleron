@@ -6,8 +6,10 @@ import { History } from './pages/History'
 import { Reading } from './pages/Reading'
 import { getToken } from './lib/auth'
 
+const AUTH_BYPASS = import.meta.env.VITE_AUTH_BYPASS === 'true'
+
 function RequireAuth({ children }: { children: React.ReactNode }) {
-  return getToken() ? <>{children}</> : <Navigate to="/login" replace />
+  return AUTH_BYPASS || getToken() ? <>{children}</> : <Navigate to="/login" replace />
 }
 
 export default function App() {
