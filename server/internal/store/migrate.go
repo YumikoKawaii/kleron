@@ -13,8 +13,12 @@ import (
 var migrationsFS embed.FS
 
 func (s *Store) migrate(ctx context.Context) error {
+	if _, err := s.pool.Exec(ctx, `CREATE SCHEMA IF NOT EXISTS kleron`); err != nil {
+		return fmt.Errorf("create schema: %w", err)
+	}
+
 	if _, err := s.pool.Exec(ctx, `
-		CREATE TABLE IF NOT EXISTS schema_migrations (
+		CREATE TABLE IF NOT EXISTS kleron.schema_migrations (
 			name       TEXT        PRIMARY KEY,
 			applied_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 		)
@@ -34,7 +38,7 @@ func (s *Store) migrate(ctx context.Context) error {
 		name := entry.Name()
 
 		var applied bool
-		_ = s.pool.QueryRow(ctx, `SELECT true FROM schema_migrations WHERE name = $1`, name).Scan(&applied)
+		_ = s.pool.QueryRow(ctx, `SELECT true FROM kleron.schema_migrations WHERE name = $1`, name).Scan(&applied)
 		if applied {
 			continue
 		}
@@ -48,7 +52,7 @@ func (s *Store) migrate(ctx context.Context) error {
 			return fmt.Errorf("apply %s: %w", name, err)
 		}
 
-		if _, err := s.pool.Exec(ctx, `INSERT INTO schema_migrations (name) VALUES ($1)`, name); err != nil {
+		if _, err := s.pool.Exec(ctx, `INSERT INTO kleron.schema_migrations (name) VALUES ($1)`, name); err != nil {
 			return fmt.Errorf("record %s: %w", name, err)
 		}
 

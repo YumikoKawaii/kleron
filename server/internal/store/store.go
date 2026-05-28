@@ -16,7 +16,13 @@ type Store struct {
 }
 
 func New(ctx context.Context, dsn, redisURL string) (*Store, error) {
-	pool, err := pgxpool.New(ctx, dsn)
+	cfg, err := pgxpool.ParseConfig(dsn)
+	if err != nil {
+		return nil, err
+	}
+	cfg.ConnConfig.RuntimeParams["search_path"] = "kleron"
+
+	pool, err := pgxpool.NewWithConfig(ctx, cfg)
 	if err != nil {
 		return nil, err
 	}
