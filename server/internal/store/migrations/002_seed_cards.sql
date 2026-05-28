@@ -1,4 +1,4 @@
-INSERT INTO cards (id, name, number, suit, image_url, upright_meaning, reversed_meaning, keywords, description) VALUES
+INSERT INTO kleron.cards (id, name, number, suit, image_url, upright_meaning, reversed_meaning, keywords, description) VALUES
 
 -- Major Arcana
 ('major-00','The Fool',0,'major','/cards/major-00.jpg','New beginnings, innocence, spontaneity, free spirit.','Recklessness, risk-taking, naivety, poor judgement.',ARRAY['beginnings','innocence','adventure','potential'],'The Fool steps off the cliff with total trust, unaware or unbothered by the drop below.'),

@@ -13,6 +13,8 @@ import (
 var migrationsFS embed.FS
 
 func (s *Store) migrate(ctx context.Context) error {
+	// Must exist before schema_migrations can be created.
+	// 001_schema.sql also creates it idempotently, but we need it here for bootstrap.
 	if _, err := s.pool.Exec(ctx, `CREATE SCHEMA IF NOT EXISTS kleron`); err != nil {
 		return fmt.Errorf("create schema: %w", err)
 	}
