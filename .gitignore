@@ -1,6 +1,4 @@
 .env
-server/pb/
-client/src/pb/
 client/node_modules/
 client/dist/
 server/kleron-server

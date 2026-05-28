@@ -10,15 +10,17 @@
     "lint": "eslint src"
   },
   "dependencies": {
+    "@bufbuild/protobuf": "^1.10.0",
     "@connectrpc/connect": "^1.7.0",
     "@connectrpc/connect-web": "^1.7.0",
-    "@bufbuild/protobuf": "^1.10.0",
     "framer-motion": "^11.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.23.1"
   },
   "devDependencies": {
+    "@bufbuild/protoc-gen-es": "^1.10.1",
+    "@connectrpc/protoc-gen-connect-es": "^1.7.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
