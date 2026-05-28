@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package kleron.v1;
 
-option go_package = "kleron/server/gen/kleron/v1;kleronv1";
+option go_package = "kleron/server/pb/kleron/v1;kleronv1";
 
 import "google/protobuf/timestamp.proto";
 

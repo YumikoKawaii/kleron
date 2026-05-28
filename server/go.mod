@@ -9,7 +9,7 @@ require (
 	github.com/redis/go-redis/v9 v9.5.3
 	github.com/rs/cors v1.11.0
 	golang.org/x/net v0.25.0
-	google.golang.org/protobuf v1.34.1
+	google.golang.org/protobuf v1.36.11
 )
 
 require (
